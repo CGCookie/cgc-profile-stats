@@ -7,18 +7,16 @@ class CGC_Profile_Stats_Images extends CGC_Profile_Stats_Base {
 	}
 
 
-	private function query( $args = array() ) {
+	private function query() {
 
-		$defaults = array(
-			'author'    => 0,
+		$args = array(
+			'author'    => $this->user_id,
 			'post_type' => 'images',
 			'nopaging'  => true,
 			'fields'    => 'ids',
 			'update_post_meta_cache' => false,
 			'update_post_term_cache' => false
 		);
-
-		$args   = wp_parse_args( $args, $defaults );
 
 		$sites  = get_blogs_of_user(1, false);
 

@@ -7,14 +7,12 @@ class CGC_Profile_Stats_Comments extends CGC_Profile_Stats_Base {
 	}
 
 
-	private function query( $args = array() ) {
+	private function query() {
 
-		$defaults = array(
-			'user_id'   => 0,
+		$args = array(
+			'user_id'   => $this->user_id,
 			'number'    => 999999
 		);
-
-		$args   = wp_parse_args( $args, $defaults );
 
 		$sites  = get_blogs_of_user( 1, false );
 

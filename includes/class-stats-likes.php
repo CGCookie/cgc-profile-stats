@@ -9,7 +9,7 @@ class CGC_Profile_Stats_Likes extends CGC_Profile_Stats_Base {
 
 	private function query() {
 
-		$defaults = array(
+		$args = array(
 			'author'    => $this->user_id,
 			'post_type' => 'images',
 			'nopaging'  => true,
@@ -17,8 +17,6 @@ class CGC_Profile_Stats_Likes extends CGC_Profile_Stats_Base {
 			'update_post_meta_cache' => false,
 			'update_post_term_cache' => false
 		);
-
-		$args   = wp_parse_args( $args, $defaults );
 
 		$sites  = get_blogs_of_user( 1, false );
 
