@@ -12,6 +12,7 @@ class CGC_Profile_Stats {
 
 	private static $instance;
 
+	// Plugin folder path
 	private $path;
 
 	// Image stats
