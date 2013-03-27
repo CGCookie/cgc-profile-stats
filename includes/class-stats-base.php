@@ -12,6 +12,7 @@ class CGC_Profile_Stats_Base {
 	// The user stats for $type
 	private $stats;
 
+
 	function __construct( $user_id = 0 ) {
 		$this->init();
 		$this->user_id = $user_id;
@@ -49,10 +50,13 @@ class CGC_Profile_Stats_Base {
 
 		$this->stats[ $year ][ date( 'n' ) ] = $this->query();
 		$this->stats['total'] = $this->get_total();
+
+		update_user_meta( $this->user_id, 'cgc_profile_stats', $this->stats );
+
 	}
 
 
-	private function query( $args = array() ) {
+	private function query() {
 		return 0;
 	}
 

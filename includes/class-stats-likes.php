@@ -6,14 +6,11 @@ class CGC_Profile_Stats_Likes extends CGC_Profile_Stats_Base {
 		$this->type = 'likes';
 	}
 
-	public function get_data() {
-		return $this->query( array( 'author' => $this->user_id ) );
-	}
 
-	private function query( $args = array() ) {
+	private function query() {
 
 		$defaults = array(
-			'author'    => 0,
+			'author'    => $this->user_id,
 			'post_type' => 'images',
 			'nopaging'  => true,
 			'fields'    => 'ids',
