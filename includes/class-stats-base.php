@@ -27,7 +27,7 @@ class CGC_Profile_Stats_Base {
 	}
 
 
-	private function get_stats() {
+	public function get_stats() {
 
 		$this->stats = get_user_meta( $this->user_id, 'cgc_profile_stats', true );
 
