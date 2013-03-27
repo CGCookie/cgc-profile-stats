@@ -67,15 +67,14 @@ class CGC_Profile_Stats_Base {
 	// Calculate the total stats over time
 	private function get_total() {
 
-		$total = 0;
+		// Get the last year on record
+		$year  = end( $this->stats['years'] );
 
-		foreach( $this->stats['years'] as $year ) {
-			foreach( $year as $month ) {
-				$total += $month;
-			}
-		}
+		// Get the last month on record
+		$month = end( $year );
 
-		return 0;
+		// The total is the last month we have on record
+		return $this->stats['years'][ $year ][ $month ];
 	}
 
 }
