@@ -23,17 +23,27 @@ class CGC_Profile_Stats_Likes extends CGC_Profile_Stats_Base {
 
 		$args   = wp_parse_args( $args, $defaults );
 
-		$images = get_posts( $args );
+		$sites  = get_blogs_of_user( 1, false );
 
 		$likes  = 0;
 
-		if( $images ) :
-			foreach( $images as $image ) :
-				$count = get_post_meta( $image, '_cgc_love_count', true );
-				if( is_int( $count ) )
-					$likes += $count;
-			endforeach;
-		endif;
+		foreach( $sites as $site ) :
+
+			switch_to_blog( $site->userblog_id );
+
+			$images = get_posts( $args );
+
+			if( $images ) :
+				foreach( $images as $image ) :
+					$count = get_post_meta( $image, '_cgc_love_count', true );
+					if( is_int( $count ) )
+						$likes += $count;
+				endforeach;
+			endif;
+
+			restore_current_blog();
+
+		endforeach;
 
 		return $likes;
 
