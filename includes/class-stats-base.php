@@ -18,7 +18,6 @@ class CGC_Profile_Stats_Base {
 		$this->user_id = $user_id;
 		$this->stats   = $this->get_stats();
 
-		return $this->stats;
 	}
 
 	private function init() {

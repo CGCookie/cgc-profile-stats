@@ -109,10 +109,18 @@ class CGC_Profile_Stats {
 
 
 	public function setup_stats() {
-		$this->images    = new CGC_Profile_Stats_Images( $this->user_id );
-		$this->likes     = new CGC_Profile_Stats_Likes( $this->user_id );
-		$this->followers = new CGC_Profile_Stats_followers( $this->user_id );
-		$this->comments  = new CGC_Profile_Stats_Comments( $this->user_id );
+
+		$images          = new CGC_Profile_Stats_Images( $this->user_id );
+		$this->images    = $images->get_stats();
+
+		$likes           = new CGC_Profile_Stats_Likes( $this->user_id );
+		$this->likes     = $likes->get_stats();
+
+		$followers       = new CGC_Profile_Stats_followers( $this->user_id );
+		$this->followers = $followers->get_stats();
+
+		$comments        = new CGC_Profile_Stats_Comments( $this->user_id );
+		$this->comments  = $comments->get_stats();
 	}
 
 
