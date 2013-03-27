@@ -12,6 +12,8 @@ class CGC_Profile_Stats {
 
 	private static $instance;
 
+	private $path;
+
 	/**
 	 * Get active object instance
 	 *
@@ -39,6 +41,9 @@ class CGC_Profile_Stats {
 	 */
 	public function __construct() {
 
+		$this->path = dirname( __FILE__ );
+
+		$this->includes();
 		$this->init();
 
 	}
@@ -58,6 +63,30 @@ class CGC_Profile_Stats {
 
 	}
 
+
+	/**
+	 * Include extra files
+	 *
+	 * @since 1.0
+	 *
+	 * @access private
+	 * @return void
+	 */
+	private function includes() {
+
+		$includes = array(
+			'class-stats-base.php',
+			'class-stats-likes.php',
+			'class-stats-followers.php',
+			'class-stats-comments.php',
+			'class-stats-images.php',
+		);
+
+		foreach( $includes as $file ) {
+			include $this->path . 'includes/' . $file;
+		}
+
+	}
 
 
 }
