@@ -99,7 +99,9 @@ class CGC_Profile_Stats {
 	 */
 	private function init() {
 
-		$this->user_id = get_current_user_id();
+		global $user_ID;
+
+		$this->user_id = $user_ID;
 
 		$this->images    = new CGC_Profile_Stats_Images( $this->user_id );
 		$this->likes     = new CGC_Profile_Stats_Likes( $this->user_id );
