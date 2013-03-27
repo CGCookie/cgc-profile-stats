@@ -96,8 +96,10 @@ class CGC_Profile_Stats {
 	 */
 	private function init() {
 
-		$this->images = new CGC_Profile_Stats_Images;
-		$this->likes = new CGC_Profile_Stats_Likes;
+		$this->images    = new CGC_Profile_Stats_Images;
+		$this->likes     = new CGC_Profile_Stats_Likes;
+		$this->followers = new CGC_Profile_Stats_followers;
+		$this->comments  = new CGC_Profile_Stats_Comments;
 
 	}
 
