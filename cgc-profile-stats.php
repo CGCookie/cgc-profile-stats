@@ -14,6 +14,12 @@ class CGC_Profile_Stats {
 
 	private $path;
 
+	// Image stats
+	public $images;
+
+	// Like stats
+	public $likes;
+
 	/**
 	 * Get active object instance
 	 *
@@ -50,21 +56,6 @@ class CGC_Profile_Stats {
 
 
 	/**
-	 * Run action and filter hooks.
-	 *
-	 * @since 1.0
-	 *
-	 * @access private
-	 * @return void
-	 */
-	private function init() {
-
-
-
-	}
-
-
-	/**
 	 * Include extra files
 	 *
 	 * @since 1.0
@@ -85,6 +76,22 @@ class CGC_Profile_Stats {
 		foreach( $includes as $file ) {
 			include $this->path . 'includes/' . $file;
 		}
+
+	}
+
+
+	/**
+	 * Run action and filter hooks.
+	 *
+	 * @since 1.0
+	 *
+	 * @access private
+	 * @return void
+	 */
+	private function init() {
+
+		$this->images = new CGC_Profile_Stats_Images;
+		$this->likes = new CGC_Profile_Stats_Likes;
 
 	}
 
