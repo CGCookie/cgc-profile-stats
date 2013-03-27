@@ -79,11 +79,11 @@ class CGC_Profile_Stats {
 			'class-stats-likes.php',
 			'class-stats-followers.php',
 			'class-stats-comments.php',
-			'class-stats-images.php',
+			'class-stats-images.php'
 		);
 
 		foreach( $includes as $file ) {
-			include $this->path . 'includes/' . $file;
+			include $this->path . '/includes/' . $file;
 		}
 
 	}
