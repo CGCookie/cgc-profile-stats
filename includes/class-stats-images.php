@@ -6,8 +6,8 @@ class CGC_Profile_Stats_Images extends CGC_Profile_Stats_Base {
 		$this->type = 'images';
 	}
 
-	public function get_data( $user_id = 0 ) {
-		return $this->query( array( 'author' => $user_id ) );
+	public function get_data() {
+		return $this->query( array( 'author' => $this->user_id ) );
 	}
 
 	private function query( $args = array() ) {

@@ -8,13 +8,17 @@ class CGC_Profile_Stats_Base {
 	// Cache expiration time in seconds
 	private $cache_exp;
 
+	// User ID we are getting stats for
+	private $user_id;
+
 	// Type of stat
 	private $type;
 
-	function __construct() {
+	function __construct( $user_id = 0 ) {
 		$this->init();
 		$this->set_cache_key();
 		$this->cache_exp = 3600;
+		$this->user_id   = $user_id;
 	}
 
 	private function init() {
@@ -30,6 +34,10 @@ class CGC_Profile_Stats_Base {
 
 
 	private function query( $args = array() ) {
+
+	}
+
+	private function get_past_stats() {
 
 	}
 

@@ -15,6 +15,8 @@ class CGC_Profile_Stats {
 	// Plugin folder path
 	private $path;
 
+	private $user_id;
+
 	// Image stats
 	public $images;
 
@@ -97,10 +99,12 @@ class CGC_Profile_Stats {
 	 */
 	private function init() {
 
-		$this->images    = new CGC_Profile_Stats_Images;
-		$this->likes     = new CGC_Profile_Stats_Likes;
-		$this->followers = new CGC_Profile_Stats_followers;
-		$this->comments  = new CGC_Profile_Stats_Comments;
+		$this->user_id = get_current_user_id();
+
+		$this->images    = new CGC_Profile_Stats_Images( $this->user_id );
+		$this->likes     = new CGC_Profile_Stats_Likes( $this->user_id );
+		$this->followers = new CGC_Profile_Stats_followers( $this->user_id );
+		$this->comments  = new CGC_Profile_Stats_Comments( $this->user_id );
 
 	}
 
