@@ -21,11 +21,25 @@ class CGC_Profile_Stats_Images extends CGC_Profile_Stats_Base {
 			'update_post_term_cache' => false
 		);
 
-		$args  = wp_parse_args( $args, $defaults );
+		$args   = wp_parse_args( $args, $defaults );
 
-		$query = new WP_Query( $args );
+		$sites  = get_blogs_of_user(1, false);
 
-		return $query->post_count;
+		$images = 0;
+
+		foreach( $sites as $site ) :
+
+			switch_to_blog( $site->userblog_id );
+
+			$query = new WP_Query( $args );
+
+			$images += $query->post_count;
+
+			restore_current_blog();
+
+		endforeach;
+
+		return $images;
 
 	}
 
