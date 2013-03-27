@@ -45,27 +45,31 @@ class CGC_Profile_Stats_Base {
 
 		$year =  date( 'Y' ) ;
 
-		if( ! isset( $this->stats[ $year ] ) )
-			$this->stats[ $year ] = array();
+		if( ! isset( $this->stats['years'] ) )
+			$this->stats['years'] = array();
 
-		$this->stats[ $year ][ date( 'n' ) ] = $this->query();
+		if( ! isset( $this->stats['years'][ $year ] ) )
+			$this->stats['years'][ $year ] = array();
+
+		$this->stats['years'][ $year ][ date( 'n' ) ] = $this->query();
 		$this->stats['total'] = $this->get_total();
 
 		update_user_meta( $this->user_id, 'cgc_profile_stats', $this->stats );
 
 	}
 
-
+	// Query to get stats for current month. Overwritten by subclasses
 	private function query() {
 		return 0;
 	}
 
 
+	// Calculate the total stats over time
 	private function get_total() {
 
 		$total = 0;
 
-		foreach( $this->stats as $year ) {
+		foreach( $this->stats['years'] as $year ) {
 			foreach( $year as $month ) {
 				$total += $month;
 			}
