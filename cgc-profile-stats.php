@@ -90,7 +90,7 @@ class CGC_Profile_Stats {
 
 
 	/**
-	 * Run action and filter hooks.
+	 * Setup each of our stat types
 	 *
 	 * @since 1.0
 	 *
