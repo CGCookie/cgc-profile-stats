@@ -83,7 +83,8 @@ class CGC_Profile_Stats {
 		);
 
 		foreach( $includes as $file ) {
-			include $this->path . '/includes/' . $file;
+			if( file_exists( $this->path . '/includes/' . $file ) )
+				include $this->path . '/includes/' . $file;
 		}
 
 	}
