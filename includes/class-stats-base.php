@@ -2,11 +2,6 @@
 
 class CGC_Profile_Stats_Base {
 
-	// Cache key
-	private $cache_key;
-
-	// Cache expiration time in seconds
-	private $cache_exp;
 
 	// User ID we are getting stats for
 	private $user_id;
@@ -14,48 +9,65 @@ class CGC_Profile_Stats_Base {
 	// Type of stat
 	private $type;
 
+	// The user stats for $type
+	private $stats;
+
 	function __construct( $user_id = 0 ) {
 		$this->init();
-		$this->set_cache_key();
-		$this->cache_exp = 3600;
-		$this->user_id   = $user_id;
+		$this->user_id = $user_id;
+		$this->stats   = $this->get_stats();
 	}
 
 	private function init() {
 
-		$this->type      = 'base';
+		$this->type = 'base';
 
 	}
 
 
-	public function get_data( $args = array() ) {
-		return $this->query( $data );
+	private function get_stats() {
+
+		$this->stats = get_user_meta( $this->user_id, 'cgc_profile_stats', true );
+
+		// Check if stats need to be refreshed
+		if( ! isset( $stats['modified'] ) || $stats['modified'] < strtotime( '-1 day' ) ) {
+			$this->stats = $this->refresh_stats();
+		}
+
+		return $this->stats;
+	}
+
+
+	private function refresh_stats() {
+
+		$this->stats['modified'] = time();
+
+		$year =  date( 'Y' ) ;
+
+		if( ! isset( $this->stats[ $year ] ) )
+			$this->stats[ $year ] = array();
+
+		$this->stats[ $year ][ date( 'n' ) ] = $this->query();
+		$this->stats['total'] = $this->get_total();
 	}
 
 
 	private function query( $args = array() ) {
-
-	}
-
-	private function get_past_stats() {
-
+		return 0;
 	}
 
 
-	private function set_cache_key() {
+	private function get_total() {
 
-		$this->cache_key = 'cgc_profile_stats_' . $this->type;
-	}
+		$total = 0;
 
+		foreach( $this->stats as $year ) {
+			foreach( $year as $month ) {
+				$total += $month;
+			}
+		}
 
-	private function get_cache() {
-
-		return get_transient( $this->cache_key );
-	}
-
-
-	private function set_cache( $data = array() ) {
-		set_transient( $this->cache_key, $data, $this->cache_exp );
+		return 0;
 	}
 
 }
