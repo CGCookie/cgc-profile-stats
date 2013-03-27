@@ -20,6 +20,12 @@ class CGC_Profile_Stats {
 	// Like stats
 	public $likes;
 
+	// Follower stats
+	public $followers;
+
+	// Comment stats
+	public $comments;
+
 	/**
 	 * Get active object instance
 	 *
