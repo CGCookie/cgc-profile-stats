@@ -36,7 +36,8 @@ class CGC_Profile_Stats_Base {
 
 
 		// Check if stats need to be refreshed
-		if( ! isset( $stats['modified'] ) || $stats['modified'] < strtotime( '-1 day' ) ) {
+		//if( ! isset( $stats['modified'] ) || $stats['modified'] < strtotime( '-1 day' ) ) {
+		if( ! isset( $stats['modified'] ) || $stats['modified'] < strtotime( '-1 minute' ) ) {
 			$this->refresh_stats();
 		}
 
