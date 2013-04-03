@@ -2,12 +2,12 @@
 
 class CGC_Profile_Stats_Likes extends CGC_Profile_Stats_Base {
 
-	private function init() {
+	public function init() {
 		$this->type = 'likes';
 	}
 
 
-	private function query() {
+	public function query() {
 
 		$args = array(
 			'author'    => $this->user_id,

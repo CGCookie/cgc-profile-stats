@@ -4,23 +4,23 @@ class CGC_Profile_Stats_Base {
 
 
 	// User ID we are getting stats for
-	private $user_id;
+	public $user_id;
 
 	// Type of stat
-	private $type;
+	public $type;
 
 	// The user stats for $type
 	private $stats;
 
 
-	function __construct( $user_id = 0 ) {
+	function __construct() {
 		$this->init();
-		$this->user_id = $user_id;
+		$this->user_id = get_current_user_id();
 		$this->stats   = $this->get_stats();
 
 	}
 
-	private function init() {
+	public function init() {
 
 		$this->type = 'base';
 
@@ -31,9 +31,13 @@ class CGC_Profile_Stats_Base {
 
 		$this->stats = get_user_meta( $this->user_id, 'cgc_profile_stats', true );
 
+		if( ! is_array( $this->stats ) )
+			$this->stats = array();
+
+
 		// Check if stats need to be refreshed
 		if( ! isset( $stats['modified'] ) || $stats['modified'] < strtotime( '-1 day' ) ) {
-			$this->stats = $this->refresh_stats();
+			$this->refresh_stats();
 		}
 
 		return $this->stats;
@@ -60,7 +64,7 @@ class CGC_Profile_Stats_Base {
 	}
 
 	// Query to get stats for current month. Overwritten by subclasses
-	private function query() {
+	public function query() {
 		return 0;
 	}
 

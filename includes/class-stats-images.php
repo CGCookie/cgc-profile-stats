@@ -2,16 +2,16 @@
 
 class CGC_Profile_Stats_Images extends CGC_Profile_Stats_Base {
 
-	private function init() {
+	public function init() {
 		$this->type = 'images';
 	}
 
 
-	private function query() {
+	public function query() {
 
 		$args = array(
 			'author'    => $this->user_id,
-			'post_type' => 'images',
+			'post_type' => 'post',
 			'nopaging'  => true,
 			'fields'    => 'ids',
 			'update_post_meta_cache' => false,

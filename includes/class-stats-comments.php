@@ -2,21 +2,20 @@
 
 class CGC_Profile_Stats_Comments extends CGC_Profile_Stats_Base {
 
-	private function init() {
+	public function init() {
 		$this->type = 'comments';
 	}
 
 
-	private function query() {
+	public function query() {
 
 		$args = array(
 			'user_id'   => $this->user_id,
 			'number'    => 999999
 		);
-
 		$sites  = get_blogs_of_user( 1, false );
 
-		$comments = 0;
+		$comments = 2;
 
 		foreach( $sites as $site ) :
 

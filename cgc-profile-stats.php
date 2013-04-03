@@ -62,7 +62,7 @@ class CGC_Profile_Stats {
 		$this->includes();
 		$this->init();
 
-		add_action( 'admin_footer', array( $this, 'test' ) );
+		add_action( 'admin_init', array( $this, 'test' ) );
 
 	}
 
@@ -113,22 +113,22 @@ class CGC_Profile_Stats {
 
 	public function test() {
 		$this->setup_stats();
-		echo '<pre>'; print_r( $this->images );
+		echo '<pre>'; print_r( $this ); exit;
 	}
 
 
 	public function setup_stats() {
 
-		$images          = new CGC_Profile_Stats_Images( $this->user_id );
+		$images          = new CGC_Profile_Stats_Images();
 		$this->images    = $images->get_stats();
 
-		$likes           = new CGC_Profile_Stats_Likes( $this->user_id );
+		$likes           = new CGC_Profile_Stats_Likes();
 		$this->likes     = $likes->get_stats();
 
-		$followers       = new CGC_Profile_Stats_followers( $this->user_id );
+		$followers       = new CGC_Profile_Stats_followers();
 		$this->followers = $followers->get_stats();
 
-		$comments        = new CGC_Profile_Stats_Comments( $this->user_id );
+		$comments        = new CGC_Profile_Stats_Comments();
 		$this->comments  = $comments->get_stats();
 	}
 
