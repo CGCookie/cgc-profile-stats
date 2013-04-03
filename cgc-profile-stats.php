@@ -113,7 +113,7 @@ class CGC_Profile_Stats {
 
 	public function test() {
 		$this->setup_stats();
-		echo '<pre>'; print_r( $this ); exit;
+		//echo '<pre>'; print_r( $this ); exit;
 	}
 
 
