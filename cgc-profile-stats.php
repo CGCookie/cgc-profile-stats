@@ -15,6 +15,7 @@ class CGC_Profile_Stats {
 	// Plugin folder path
 	private $path;
 
+	// User ID we are getting stats for
 	private $user_id;
 
 	// Image stats
