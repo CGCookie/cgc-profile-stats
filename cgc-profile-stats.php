@@ -134,5 +134,3 @@ class CGC_Profile_Stats {
 
 
 }
-
-$cgc_profile_stats = new CGC_Profile_Stats();
