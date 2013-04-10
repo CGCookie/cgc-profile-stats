@@ -75,8 +75,6 @@ class CGC_Profile_Stats {
 		$this->includes();
 		$this->init();
 
-		add_action( 'admin_init', array( $this, 'test' ) );
-
 	}
 
 
@@ -121,12 +119,6 @@ class CGC_Profile_Stats {
 		$this->user_id = $user_ID;
 
 
-	}
-
-
-	public function test() {
-		$this->setup_stats();
-		//echo '<pre>'; print_r( $this ); exit;
 	}
 
 
