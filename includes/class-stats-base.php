@@ -85,4 +85,60 @@ class CGC_Profile_Stats_Base {
 		return $this->stats['years'][ $year ][ $month ];
 	}
 
+	// Get stats for a particular month
+	public function month( $month = 1, $year = 0 ) {
+
+		if( empty( $year ) )
+			$year = date( 'Y' );
+
+		return isset( $this->stats['years'][ $year ][ $month ] ) ? $this->stats['years'][ $year ][ $month ] : 0;
+	}
+
+	// Get total from last month
+	public function last_month() {
+
+		$year  = date( 'Y' );
+		$month = date( 'n' );
+
+		if( $month == 1 ) {
+			$month = 12;
+			$year--;
+		} else {
+			$month--;
+		}
+
+		return $this->month( $month, $year );
+
+	}
+
+	// Get total from this month
+	public function this_month() {
+
+		$year  = date( 'Y' );
+		$month = date( 'n' );
+		return $this->month( $month, $year );
+
+	}
+
+	// Get the growth this month
+	public function change_this_month() {
+		return $this->this_month() - $this->last_month();
+	}
+
+	// Get the growth last month
+	public function change_last_month() {
+
+		$year  = date( 'Y' );
+		$month = date( 'n' );
+
+		if( $month == 2 ) {
+			$month = 12;
+			$year--;
+		} else {
+			$month = $month - 2;
+		}
+
+		return $this->last_month() - $this->month( $month, $year );
+	}
+
 }
