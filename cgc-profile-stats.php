@@ -133,8 +133,8 @@ class CGC_Profile_Stats {
 		$followers       = new CGC_Profile_Stats_followers();
 		$this->followers = $followers->stats;
 
-		$comments        = new CGC_Profile_Stats_Comments();
-		$this->comments  = $comments->stats;
+		$this->comments = new CGC_Profile_Stats_Comments();
+		//$this->comments  = $comments->stats;
 	}
 
 
