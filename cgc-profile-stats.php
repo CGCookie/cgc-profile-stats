@@ -118,23 +118,22 @@ class CGC_Profile_Stats {
 
 		$this->user_id = $user_ID;
 
-
 	}
 
 
 	public function setup_stats() {
 
 		$images          = new CGC_Profile_Stats_Images();
-		$this->images    = $images->get_stats();
+		$this->images    = $images->stats;
 
 		$likes           = new CGC_Profile_Stats_Likes();
-		$this->likes     = $likes->get_stats();
+		$this->likes     = $likes->stats;
 
 		$followers       = new CGC_Profile_Stats_followers();
-		$this->followers = $followers->get_stats();
+		$this->followers = $followers->stats;
 
 		$comments        = new CGC_Profile_Stats_Comments();
-		$this->comments  = $comments->get_stats();
+		$this->comments  = $comments->stats;
 	}
 
 
