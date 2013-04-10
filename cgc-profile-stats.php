@@ -8,6 +8,19 @@ Author URI:  http://pippinsplugins.com
 Contributors: mordauk
 */
 
+
+/************************************
+* TODO
+* Helpers for:
+* - {stat type} last month
+* - {stat type} this month
+* - {stat type} total all time
+*
+*
+*
+************************************/
+
+
 class CGC_Profile_Stats {
 
 	private static $instance;
