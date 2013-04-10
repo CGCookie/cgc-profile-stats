@@ -10,7 +10,7 @@ class CGC_Profile_Stats_Base {
 	public $type;
 
 	// The user stats for $type
-	private $stats;
+	public $stats;
 
 
 	function __construct() {
