@@ -71,7 +71,7 @@ class CGC_Profile_Stats_Base {
 
 
 	// Calculate the total stats over time
-	private function get_total() {
+	public function get_total() {
 
 		// Get the last year on record
 		$years = end( $this->stats['years'] );
