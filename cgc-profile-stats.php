@@ -74,6 +74,7 @@ class CGC_Profile_Stats {
 
 		$this->includes();
 		$this->init();
+		$this->setup_stats();
 
 	}
 
