@@ -30,7 +30,6 @@ class CGC_Profile_Stats_Likes extends CGC_Profile_Stats_Base {
 			if( $images ) :
 				foreach( $images as $image ) :
 					$count = absint( get_post_meta( $image, '_cgc_love_count', true ) );
-					echo $count . ' ';
 					$likes += $count;
 				endforeach;
 			endif;
