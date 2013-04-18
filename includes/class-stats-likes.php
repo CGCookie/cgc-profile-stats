@@ -27,12 +27,13 @@ class CGC_Profile_Stats_Likes extends CGC_Profile_Stats_Base {
 			switch_to_blog( $site->userblog_id );
 
 			$images = get_posts( $args );
-			print_r( $images );
 			if( $images ) :
 				foreach( $images as $image ) :
 					$count = get_post_meta( $image, '_cgc_love_count', true );
-					if( is_int( $count ) )
+					if( is_int( $count ) ) {
+						echo $count . ' ';
 						$likes += $count;
+					}
 				endforeach;
 			endif;
 
