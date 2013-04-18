@@ -15,7 +15,7 @@ class CGC_Profile_Stats_Comments extends CGC_Profile_Stats_Base {
 		);
 		$sites  = get_blogs_of_user( 1, false );
 
-		$comments = 2;
+		$comments = 0;
 
 		foreach( $sites as $site ) :
 
