@@ -11,7 +11,7 @@ class CGC_Profile_Stats_Images extends CGC_Profile_Stats_Base {
 
 		$args = array(
 			'author'    => $this->user_id,
-			'post_type' => 'post',
+			'post_type' => 'images',
 			'nopaging'  => true,
 			'fields'    => 'ids',
 			'update_post_meta_cache' => false,
