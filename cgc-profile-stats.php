@@ -46,6 +46,9 @@ class CGC_Profile_Stats {
 	// Comment stats
 	public $comments;
 
+	// Comment on user's images stats
+	public $image_comments;
+
 	/**
 	 * Get active object instance
 	 *
@@ -98,6 +101,7 @@ class CGC_Profile_Stats {
 			'class-stats-followers.php',
 			'class-stats-following.php',
 			'class-stats-comments.php',
+			'class-stats-image-comments.php'
 			'class-stats-images.php'
 		);
 
@@ -128,11 +132,12 @@ class CGC_Profile_Stats {
 
 	public function setup_stats() {
 
-		$this->images    = new CGC_Profile_Stats_Images();
-		$this->likes     = new CGC_Profile_Stats_Likes();
-		$this->followers = new CGC_Profile_Stats_followers();
-		$this->following = new CGC_Profile_Stats_following();
-		$this->comments  = new CGC_Profile_Stats_Comments();
+		$this->images          = new CGC_Profile_Stats_Images();
+		$this->likes           = new CGC_Profile_Stats_Likes();
+		$this->followers       = new CGC_Profile_Stats_followers();
+		$this->following       = new CGC_Profile_Stats_following();
+		$this->comments        = new CGC_Profile_Stats_Comments();
+		$this->image_comments  = new CGC_Profile_Stats_Image_Comments();
 	}
 
 
