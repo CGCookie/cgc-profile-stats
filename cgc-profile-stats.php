@@ -40,6 +40,9 @@ class CGC_Profile_Stats {
 	// Follower stats
 	public $followers;
 
+	// Following stats
+	public $following;
+
 	// Comment stats
 	public $comments;
 
@@ -93,6 +96,7 @@ class CGC_Profile_Stats {
 			'class-stats-base.php',
 			'class-stats-likes.php',
 			'class-stats-followers.php',
+			'class-stats-following.php',
 			'class-stats-comments.php',
 			'class-stats-images.php'
 		);
@@ -125,12 +129,10 @@ class CGC_Profile_Stats {
 	public function setup_stats() {
 
 		$this->images    = new CGC_Profile_Stats_Images();
-
 		$this->likes     = new CGC_Profile_Stats_Likes();
-
 		$this->followers = new CGC_Profile_Stats_followers();
-
-		$this->comments = new CGC_Profile_Stats_Comments();
+		$this->following = new CGC_Profile_Stats_following();
+		$this->comments  = new CGC_Profile_Stats_Comments();
 	}
 
 
