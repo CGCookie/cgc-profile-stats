@@ -49,6 +49,9 @@ class CGC_Profile_Stats {
 	// Comment on user's images stats
 	public $image_comments;
 
+	// Likes on user's images stats
+	public $image_likes;
+
 	/**
 	 * Get active object instance
 	 *
@@ -102,6 +105,7 @@ class CGC_Profile_Stats {
 			'class-stats-following.php',
 			'class-stats-comments.php',
 			'class-stats-image-comments.php',
+			'class-stats-image-likes.php',
 			'class-stats-images.php'
 		);
 
@@ -138,6 +142,7 @@ class CGC_Profile_Stats {
 		$this->following       = new CGC_Profile_Stats_following();
 		$this->comments        = new CGC_Profile_Stats_Comments();
 		$this->image_comments  = new CGC_Profile_Stats_Image_Comments();
+		$this->image_likes     = new CGC_Profile_Stats_Image_Likes();
 	}
 
 

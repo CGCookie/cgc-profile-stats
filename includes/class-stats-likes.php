@@ -1,5 +1,6 @@
 <?php
 
+// User's likes
 class CGC_Profile_Stats_Likes extends CGC_Profile_Stats_Base {
 
 	public function init() {
@@ -9,15 +10,6 @@ class CGC_Profile_Stats_Likes extends CGC_Profile_Stats_Base {
 
 	public function query() {
 
-		$args = array(
-			'author'    => $this->user_id,
-			'post_type' => 'images',
-			'nopaging'  => true,
-			'fields'    => 'ids',
-			'update_post_meta_cache' => false,
-			'update_post_term_cache' => false
-		);
-
 		$sites  = get_blogs_of_user( 1, false );
 
 		$likes  = 0;
@@ -26,17 +18,14 @@ class CGC_Profile_Stats_Likes extends CGC_Profile_Stats_Base {
 
 			switch_to_blog( $site->userblog_id );
 
-			$images = get_posts( $args );
-			if( $images ) :
-				foreach( $images as $image ) :
-					$count = absint( get_post_meta( $image, '_cgc_love_count', true ) );
-					$likes += $count;
-				endforeach;
-			endif;
+			$loves = 0
+			if( function_exists( 'cgc_get_users_loved_posts' ) )
+				$loves = count( cgc_get_users_loved_posts( $this->user_id ) );
 
-			restore_current_blog();
+			$likes += $loves;
 
 		endforeach;
+		restore_current_blog();
 
 		return $likes;
 
