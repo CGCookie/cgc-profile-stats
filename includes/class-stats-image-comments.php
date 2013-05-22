@@ -32,9 +32,9 @@ class CGC_Profile_Stats_Image_Comments extends CGC_Profile_Stats_Base {
 					$comments += wp_count_comments( $image )->approved;
 				}
 			}
+			restore_current_blog();
 
 		endforeach;
-		restore_current_blog();
 
 		return $comments;
 
