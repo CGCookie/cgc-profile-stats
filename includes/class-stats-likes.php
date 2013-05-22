@@ -18,7 +18,7 @@ class CGC_Profile_Stats_Likes extends CGC_Profile_Stats_Base {
 
 			switch_to_blog( $site->userblog_id );
 
-			$loves = 0
+			$loves = 0;
 			if( function_exists( 'cgc_get_users_loved_posts' ) )
 				$loves = count( cgc_get_users_loved_posts( $this->user_id ) );
 
