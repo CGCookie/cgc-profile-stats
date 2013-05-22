@@ -101,7 +101,7 @@ class CGC_Profile_Stats {
 			'class-stats-followers.php',
 			'class-stats-following.php',
 			'class-stats-comments.php',
-			'class-stats-image-comments.php'
+			'class-stats-image-comments.php',
 			'class-stats-images.php'
 		);
 
