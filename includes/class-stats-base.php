@@ -32,12 +32,14 @@ class CGC_Profile_Stats_Base {
 		$this->stats = get_user_meta( $this->user_id, 'cgc_profile_stats', true );
 
 		if( ! is_array( $this->stats ) )
-			$this->stats = array();
+			$this->stats = array(
+				$this->type => array()
+			);
 
 
 		// Check if stats need to be refreshed
-		//if( ! isset( $stats['modified'] ) || $stats['modified'] < strtotime( '-1 day' ) ) {
-		if( ! isset( $this->stats['modified'] ) || $this->stats['modified'] < strtotime( '-1 hour' ) ) {
+		//if( ! isset( $stats[ $this->type ]['modified'] ) || $stats[ $this->type ]['modified'] < strtotime( '-1 day' ) ) {
+		if( ! isset( $this->stats[ $this->type ]['modified'] ) || $this->stats[ $this->type ]['modified'] < strtotime( '-1 hour' ) ) {
 		}
 			$this->refresh_stats();
 
@@ -47,18 +49,18 @@ class CGC_Profile_Stats_Base {
 
 	private function refresh_stats() {
 
-		$this->stats['modified'] = time();
+		$this->stats[ $this->type ]['modified'] = time();
 
 		$year =  date( 'Y' ) ;
 
-		if( ! isset( $this->stats['years'] ) )
-			$this->stats['years'] = array();
+		if( ! isset( $this->stats[ $this->type ]['years'] ) )
+			$this->stats[ $this->type ]['years'] = array();
 
-		if( ! isset( $this->stats['years'][ $year ] ) )
-			$this->stats['years'][ $year ] = array();
+		if( ! isset( $this->stats[ $this->type ]['years'][ $year ] ) )
+			$this->stats[ $this->type ]['years'][ $year ] = array();
 
-		$this->stats['years'][ $year ][ date( 'n' ) ] = $this->query();
-		$this->stats['total'] = $this->get_total();
+		$this->stats[ $this->type ]['years'][ $year ][ date( 'n' ) ] = $this->query();
+		$this->stats[ $this->type ]['total'] = $this->get_total();
 
 		update_user_meta( $this->user_id, 'cgc_profile_stats', $this->stats );
 
@@ -74,15 +76,15 @@ class CGC_Profile_Stats_Base {
 	public function get_total() {
 
 		// Get the last year on record
-		$years = end( $this->stats['years'] );
-		$year  = key( array_slice( $this->stats['years'], -1, 1, TRUE ) );
+		$years = end( $this->stats[ $this->type ]['years'] );
+		$year  = key( array_slice( $this->stats[ $this->type ]['years'], -1, 1, TRUE ) );
 
 		// Get the last month on record
 		end( $years );
 		$month = key( $years );
 
 		// The total is the last month we have on record
-		return $this->stats['years'][ $year ][ $month ];
+		return $this->stats[ $this->type ]['years'][ $year ][ $month ];
 	}
 
 	// Get stats for a particular month
@@ -91,7 +93,7 @@ class CGC_Profile_Stats_Base {
 		if( empty( $year ) )
 			$year = date( 'Y' );
 
-		return isset( $this->stats['years'][ $year ][ $month ] ) ? $this->stats['years'][ $year ][ $month ] : 0;
+		return isset( $this->stats[ $this->type ]['years'][ $year ][ $month ] ) ? $this->stats[ $this->type ]['years'][ $year ][ $month ] : 0;
 	}
 
 	// Get total from last month
