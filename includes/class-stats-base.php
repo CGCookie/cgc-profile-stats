@@ -40,8 +40,8 @@ class CGC_Profile_Stats_Base {
 		// Check if stats need to be refreshed
 		//if( ! isset( $stats[ $this->type ]['modified'] ) || $stats[ $this->type ]['modified'] < strtotime( '-1 day' ) ) {
 		if( ! isset( $this->stats[ $this->type ]['modified'] ) || $this->stats[ $this->type ]['modified'] < strtotime( '-1 hour' ) ) {
-		}
 			$this->refresh_stats();
+		}	
 
 		return $this->stats;
 	}
