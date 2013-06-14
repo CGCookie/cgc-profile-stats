@@ -9,15 +9,6 @@ class CGC_Profile_Stats_Images extends CGC_Profile_Stats_Base {
 
 	public function query() {
 
-		$args = array(
-			'author'    => $this->user_id,
-			'post_type' => 'images',
-			'nopaging'  => true,
-			'fields'    => 'ids',
-			'update_post_meta_cache' => false,
-			'update_post_term_cache' => false
-		);
-
 		$sites  = get_blogs_of_user(1, false);
 
 		$images = 0;
@@ -26,9 +17,8 @@ class CGC_Profile_Stats_Images extends CGC_Profile_Stats_Base {
 
 			switch_to_blog( $site->userblog_id );
 
-			$query = new WP_Query( $args );
-
-			$images += $query->post_count;
+			if( function_exists( 'cgc_count_user_posts_by_type' ) )
+				$images += cgc_count_user_posts_by_type( $this->user_id, 'images' );
 
 			restore_current_blog();
 
