@@ -31,7 +31,6 @@ class CGC_Profile_Stats_Image_Comments extends CGC_Profile_Stats_Base {
 				foreach( $images as $image ) {
 
 					$comment_args = array(
-						'user_id'   => $this->user_id,
 						'number'    => 999999,
 						'post_id'   => $image,
 						'status'    => 'approve'
