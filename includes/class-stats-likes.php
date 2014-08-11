@@ -24,8 +24,9 @@ class CGC_Profile_Stats_Likes extends CGC_Profile_Stats_Base {
 
 			$likes += $loves;
 
+			restore_current_blog();
+
 		endforeach;
-		restore_current_blog();
 
 		return $likes;
 
